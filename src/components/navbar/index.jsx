@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import HamburguerMenu from 'react-hamburger-menu';
-import { slide as Menu } from 'react-burger-menu'
 import Image from '../imageTag';
+import BurgerBtn from './BurgerBtn';
+import BurgerMenu from './BurgerMenu';
 import './navbar';
+
 
 class Navbar extends Component {
   constructor() {
@@ -10,9 +11,10 @@ class Navbar extends Component {
     this.state = {
       open: false,
     };
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
-  menuHandler() {
+  clickHandler() {
     const { open } = this.state;
     this.setState({
       open: !open,
@@ -22,24 +24,14 @@ class Navbar extends Component {
   render() {
     const { open } = this.state;
     return (
-      <>
-      {/* <Menu>
-        <a id="home" className="menu-item" href="/">Home</a>
-        <a id="about" className="menu-item" href="/about">About</a>
-        <a id="contact" className="menu-item" href="/contact">Contact</a>
-        <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
-      </Menu> */}
-        <nav className="navbar">
-          <Image className="logo" alt="logo with four shapes" src="./public/images/logo.png" />
-          <h1 className="title">Controle Financeiro</h1>
-          <HamburguerMenu
-            isOpen={open}
-            menuClicked={this.menuHandler.bind(this)}
-            width={18}
-            height={15}
-          />
-        </nav>
-      </>
+      <nav className="navbar">
+        <Image src="./public/images/logo.png" />
+        <h2>Controle financeiro</h2>
+        <BurgerBtn onClick={this.clickHandler} />
+        {
+          (open) ? <BurgerMenu open={open} onClick={this.clickHandler} /> : null
+        }
+      </nav>
     );
   }
 }

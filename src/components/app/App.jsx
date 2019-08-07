@@ -43,8 +43,6 @@ class App extends Component {
     const count = localStorage.getItem('@frontend-test/count');
     const { transactions } = this.state;
     const transactionsCopy = [...transactions];
-    console.log('cooooount', count);
-    console.log('locaaaaal', localStorage.getItem(`@frontend-test/nameMerchandise${count}`));
     transactionsCopy.push({
       transactionType: localStorage.getItem(`@frontend-test/transactionType${count}`),
       nameMerchandise: localStorage.getItem(`@frontend-test/nameMerchandise${count}`),

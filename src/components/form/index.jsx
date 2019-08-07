@@ -64,7 +64,7 @@ class Form extends Component {
         <Input
           label="Valor"
           id="amount"
-          type="number"
+          type="text"
           name="amount"
           placeholder="R$ 0,00"
           value={amount}
