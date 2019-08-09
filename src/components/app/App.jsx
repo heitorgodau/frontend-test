@@ -105,17 +105,19 @@ class App extends Component {
     return (
       <>
         <Navbar />
-        <Form
-          count={count}
-          addCount={this.addCount}
-          getNewTransaction={this.getNewTransaction}
-          addTotal={this.addTotal}
-        />
-        <TransactionsStatement
-          count={count}
-          transactions={transactions}
-          total={total}
-        />
+        <main className="financial-control">
+          <Form
+            count={count}
+            addCount={this.addCount}
+            getNewTransaction={this.getNewTransaction}
+            addTotal={this.addTotal}
+          />
+          <TransactionsStatement
+            count={count}
+            transactions={transactions}
+            total={total}
+          />
+        </main>
       </>
     );
   }

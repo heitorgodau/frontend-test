@@ -28,9 +28,21 @@ const TransactionsStatement = (props) => {
         </TableWrap>
       </Table>
       <div className="total">
-        <h3>total</h3>
+        <h3>Total</h3>
         <h3>{`R$${total}`}</h3>
       </div>
+      {
+        (parseInt(total, 10) !== 0)
+          ? (
+            <div className="total-state">
+              {
+                (parseInt(total, 10) > 0) ? '[Lucro]' : '[Prejuizo]'
+              }
+            </div>
+          )
+          : null
+
+      }
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuList from './MenuList';
 import BurgerBtn from './BurgerBtn';
 
 const BurgerMenu = (props) => {
@@ -6,11 +7,7 @@ const BurgerMenu = (props) => {
   return (
     <div className="burger-menu">
       <BurgerBtn open onClick={onClick} />
-      <ul className="menu-list">
-        <li>Resumo</li>
-        <li>Dashboard</li>
-        <li className="active">Configurações</li>
-      </ul>
+      <MenuList links={['Dashboard', 'Resumo', 'Configurações']} className="menu-list" />
     </div>
   );
 };

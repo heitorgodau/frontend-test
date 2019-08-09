@@ -43,36 +43,42 @@ class Form extends Component {
 
   render() {
     const { transactionType, nameMerchandise, amount } = this.state;
+    const viewport = window.screen.width;
     return (
-      <form className="insert-transacion" onSubmit={e => this.handleSubmit(e)}>
-        <Input
-          label="Tipo de transação"
-          id="type-transaction"
-          type="select"
-          name="transactionType"
-          value={transactionType}
-          onChange={this.handleChange}
-        />
-        <Input
-          label="Nome da mercadoria"
-          id="name-merchandise"
-          type="text"
-          name="nameMerchandise"
-          placeholder="input"
-          value={nameMerchandise}
-          onChange={this.handleChange}
-        />
-        <Input
-          label="Valor"
-          id="amount"
-          type="text"
-          name="amount"
-          placeholder="R$ 0,00"
-          value={amount}
-          onChange={this.handleChange}
-        />
-        <Button type="submit" className="btn">Adicionar transação</Button>
-      </form>
+      <section className="section-transactions">
+        {
+          (viewport >= 768) ? <h2>Nova transação</h2> : null
+        }
+        <form className="insert-transacion" onSubmit={e => this.handleSubmit(e)}>
+          <Input
+            label="Tipo de transação"
+            id="type-transaction"
+            type="select"
+            name="transactionType"
+            value={transactionType}
+            onChange={this.handleChange}
+          />
+          <Input
+            label="Nome da mercadoria"
+            id="name-merchandise"
+            type="text"
+            name="nameMerchandise"
+            placeholder="input"
+            value={nameMerchandise}
+            onChange={this.handleChange}
+          />
+          <Input
+            label="Valor"
+            id="amount"
+            type="text"
+            name="amount"
+            placeholder="R$ 0,00"
+            value={amount}
+            onChange={this.handleChange}
+          />
+          <Button type="submit" className="btn">Adicionar transação</Button>
+        </form>
+      </section>
     );
   }
 }

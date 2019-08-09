@@ -1,0 +1,29 @@
+// tablets
+$screen-md-min: 768px;
+
+// Tablets (portrait view) and small desktops
+$screen-lg-min: 1024px;
+
+// Large desktops
+$screen-xl-min: 1920px;
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+      @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+      @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+      @content;
+  }
+}
