@@ -10,14 +10,18 @@ class App extends Component {
     this.state = {
       transactions: [],
       count: 0,
+      total: 0,
     };
     this.addCount = this.addCount.bind(this);
+    this.getTotal = this.getTotal.bind(this);
+    this.addTotal = this.addTotal.bind(this);
     this.getNewTransaction = this.getNewTransaction.bind(this);
     this.getAllTransactions = this.getAllTransactions.bind(this);
   }
 
   componentDidMount() {
     this.getAllTransactions();
+    this.getTotal();
     this.setState({
       count: localStorage.getItem('@frontend-test/count') || 0,
     });
@@ -54,6 +58,39 @@ class App extends Component {
     });
   }
 
+  getTotal() {
+    const count = parseInt(localStorage.getItem('@frontend-test/count'), 10);
+    let total = 0;
+    for (let i = 0; i < count; i += 1) {
+      const floatAmount = parseFloat(localStorage.getItem(`@frontend-test/amount${i}`).replace(/,/g, '.'));
+      if (localStorage.getItem(`@frontend-test/transactionType${i}`) === 'Compra') {
+        total -= floatAmount;
+      } else {
+        total += floatAmount;
+      }
+    }
+    total = total.toFixed(2).toString().replace(/\./g, ',');
+    localStorage.setItem('@frontend-test/total', total);
+    this.setState({
+      total,
+    });
+  }
+
+  addTotal(transactionType, amount) {
+    let total = parseFloat(localStorage.getItem('@frontend-test/total').replace(/,/g, '.'));
+    const floatAmount = parseFloat(amount.replace(/,/g, '.'));
+    if (transactionType === 'Compra') {
+      total -= floatAmount;
+    } else {
+      total += floatAmount;
+    }
+    total = total.toFixed(2).toString().replace(/\./g, ',');
+    localStorage.setItem('@frontend-test/total', total);
+    this.setState({
+      total,
+    });
+  }
+
   addCount() {
     let count = parseInt(localStorage.getItem('@frontend-test/count'), 10);
     count += 1;
@@ -64,12 +101,21 @@ class App extends Component {
   }
 
   render() {
-    const { count, transactions } = this.state;
+    const { count, transactions, total } = this.state;
     return (
       <>
         <Navbar />
-        <Form count={count} addCount={this.addCount} getNewTransaction={this.getNewTransaction} />
-        <TransactionsStatement count={count} transactions={transactions} />
+        <Form
+          count={count}
+          addCount={this.addCount}
+          getNewTransaction={this.getNewTransaction}
+          addTotal={this.addTotal}
+        />
+        <TransactionsStatement
+          count={count}
+          transactions={transactions}
+          total={total}
+        />
       </>
     );
   }

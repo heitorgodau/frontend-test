@@ -1,0 +1,22 @@
+.transactions {
+  margin-top: 30px;
+  padding: 0 20px;
+  h2 {
+    font-size: 1.1em;
+    text-align: center;
+  }
+  table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    th {
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+      text-align: left;
+    }
+    tr {
+      margin-top: 10px;
+    }
+  }
+}

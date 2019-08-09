@@ -26,7 +26,7 @@ class Form extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { transactionType, nameMerchandise, amount } = this.state;
-    const { addCount, count, getNewTransaction } = this.props;
+    const { addCount, count, getNewTransaction, addTotal } = this.props;
     localStorage.setItem('@frontend-test/count', count);
     localStorage.setItem(`@frontend-test/transactionType${count}`, transactionType);
     localStorage.setItem(`@frontend-test/nameMerchandise${count}`, nameMerchandise);
@@ -37,6 +37,7 @@ class Form extends Component {
       amount: '',
     });
     getNewTransaction();
+    addTotal(transactionType, amount);
     addCount();
   }
 

@@ -7,7 +7,7 @@ const TableRow = (props) => {
   return (
     <tr>
       {
-        valSplited.map((el, idx) => <TableCell head key={idx}>{el}</TableCell>)
+        valSplited.map((el, idx) => <TableCell head={head} key={idx}>{el}</TableCell>)
       }
     </tr>
   );
