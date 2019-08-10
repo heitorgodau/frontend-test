@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Option from './Option';
 
 const Input = (props) => {
@@ -27,6 +28,21 @@ const Input = (props) => {
       />
     </label>
   );
+};
+
+Input.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+Input.defaultProps = {
+  label: '',
+  placeholder: '',
 };
 
 export default Input;

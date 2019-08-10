@@ -1,5 +1,4 @@
 require('dotenv').config();
-const path = require('path');
 const HtmlWabpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -32,15 +31,16 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images',
+        },
+      },
     ],
   },
   resolve: { extensions: ['*', '.js', '.jsx', '.scss'] },
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    port: 3000,
-    publicPath: 'http://localhost:3000/dist',
-    hot: true,
-  },
   plugins: [
     new HtmlWabpackPlugin({
       template: 'public/index.html',

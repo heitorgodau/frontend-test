@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Input from '../input';
 import Button from '../button';
 import './form';
@@ -26,11 +27,19 @@ class Form extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { transactionType, nameMerchandise, amount } = this.state;
-    const { addCount, count, getNewTransaction, addTotal } = this.props;
+    const {
+      addCount,
+      count,
+      getNewTransaction,
+      addTotal,
+    } = this.props;
+    // const formato = { style: 'currency', currency: 'BRL' };
+    // const floatAmount2 = amount.toLocaleString('pt-BR', formato);
+    const floatAmount = parseFloat(amount.replace(/,/, '.')).toFixed(2).toString().replace(/\./g, ',');
     localStorage.setItem('@frontend-test/count', count);
     localStorage.setItem(`@frontend-test/transactionType${count}`, transactionType);
     localStorage.setItem(`@frontend-test/nameMerchandise${count}`, nameMerchandise);
-    localStorage.setItem(`@frontend-test/amount${count}`, amount);
+    localStorage.setItem(`@frontend-test/amount${count}`, floatAmount);
     this.setState({
       transactionType,
       nameMerchandise: '',
@@ -43,12 +52,9 @@ class Form extends Component {
 
   render() {
     const { transactionType, nameMerchandise, amount } = this.state;
-    const viewport = window.screen.width;
     return (
       <section className="section-transactions">
-        {
-          (viewport >= 768) ? <h2>Nova transação</h2> : null
-        }
+        <h2>Nova transação</h2>
         <form className="insert-transacion" onSubmit={e => this.handleSubmit(e)}>
           <Input
             label="Tipo de transação"
@@ -82,5 +88,12 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  addCount: PropTypes.func.isRequired,
+  getNewTransaction: PropTypes.func.isRequired,
+  addTotal: PropTypes.func.isRequired,
+  count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+};
 
 export default Form;

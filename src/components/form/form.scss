@@ -1,5 +1,5 @@
-@import '../../colors.scss';
-@import '../../breakpoints.scss';
+@import '../../colors';
+@import '../../breakpoints';
 
 .section-transactions {
   @include md {
@@ -15,8 +15,13 @@
   }
   
   h2 {
-    text-align: center;
-    font-size: 1em
+    display: none;
+
+    @include md {
+      display: block;
+      text-align: center;
+      font-size: 1em;
+    }
   }
 
   .insert-transacion {
